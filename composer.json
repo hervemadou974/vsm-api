@@ -1,0 +1,22 @@
+{
+    "name": "h.madou/vsm-api",
+    "description": "API for medical information",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Controllers\\": "src/controllers/",
+            "Services\\": "src/services/",
+            "Middlewares\\": "src/middlewares/",
+            "Utils\\": "src/utils/",
+            "Models\\": "src/models/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Hervé",
+            "email": "j.hervemadou@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
