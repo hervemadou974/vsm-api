@@ -1,41 +1,28 @@
 <?php
 
-namespace HMadou\VsmApi\Utils;
+namespace Utils;
 
 class JsonResponse
 {
-    public static function success($data = null, int $status = 200)
+    public static function success($data): void
     {
-        http_response_code($status);
-
-        echo json_encode([
-            "success" => true,
-            "data" => $data
-        ]);
+        http_response_code(200);
+        echo json_encode(['success' => true, 'data' => $data]);
     }
 
-    public static function error(string $message, int $status = 400)
+    public static function error(string $msg, int $code): void
     {
-        http_response_code($status);
-
-        echo json_encode([
-            "success" => false,
-            "error" => $message
-        ]);
+        http_response_code($code);
+        echo json_encode(['success' => false, 'message' => $msg]);
     }
 
-    public static function unauthorized(string $message = "Accès non autorisé")
+    public static function unauthorized(string $msg): void
     {
-        self::error($message, 401);
+        self::error($msg, 401);
     }
 
-    public static function notFound(string $message = "Ressource introuvable")
+    public static function notFound(): void
     {
-        self::error($message, 404);
-    }
-
-    public static function serverError(string $message = "Erreur interne du serveur")
-    {
-        self::error($message, 500);
+        self::error('Route non trouvée', 404);
     }
 }

@@ -7,35 +7,35 @@ use Utils\Jwt;
 
 class AuthService
 {
-    private PersonneRepository $personneRepository;
+    private PersonneRepository $repo;
 
     public function __construct()
     {
-        $this->personneRepository = new PersonneRepository();
+        $this->repo = new PersonneRepository();
     }
 
     public function login(string $email, string $password): array
     {
-        $personne = $this->personneRepository->findByEmail($email);
+        $user = $this->repo->findByEmail($email);
 
-        if (!$personne || !password_verify($password, $personne['mot_de_passe'])) {
+        if (!$user || !password_verify($password, $user['mot_de_passe'])) {
             return [
                 'success' => false,
                 'message' => 'Identifiants invalides'
             ];
         }
 
-        $roles = $this->personneRepository->findRolesByPersonneId($personne['id']);
+        $roles = $this->repo->findRolesByPersonneId($user['id']);
 
         $token = Jwt::generate([
-            'id'    => $personne['id'],
-            'email' => $personne['email'],
+            'id' => $user['id'],
+            'email' => $user['email'],
             'roles' => array_column($roles, 'code')
         ]);
 
         return [
             'success' => true,
-            'token'   => $token
+            'token' => $token
         ];
     }
 }

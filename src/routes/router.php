@@ -1,46 +1,32 @@
 <?php
 
-namespace HMadou\VsmApi\Routes;
+namespace Routes;
 
-use HMadou\VsmApi\Utils\JsonResponse;
-use HMadou\VsmApi\Controllers\AuthController;
+use Controllers\AuthController;
+use Utils\JsonResponse;
 
 class Router
 {
-    public function handle(string $uri, string $method): void
-    {
-        // Normaliser l'URI : enlever les slashs de fin et convertir en minuscule
-        $uri = rtrim(strtolower($uri), "/");
+   public function handle(string $uri, string $method): void
+{
+    $uri = strtolower(parse_url($uri, PHP_URL_PATH));
 
-        /* -----------------------------------
-           Route de test existante
-        ----------------------------------- */
-        if (strpos($uri, "/test") !== false && $method === 'GET') {
-            JsonResponse::success("Router ok !");
-            return;
-        }
-
-        /* -----------------------------------
-           POST /auth/login
-        ----------------------------------- */
-        if (strpos($uri, "/auth/login") !== false && $method === 'POST') {
-            $controller = new AuthController();
-            $controller->login();
-            return;
-        }
-
-        /* -----------------------------------
-           GET /auth/me  (route protégée JWT)
-        ----------------------------------- */
-        if (strpos($uri, "/auth/me") !== false && $method === 'GET') {
-            $controller = new AuthController();
-            $controller->me();
-            return;
-        }
-
-        /* -----------------------------------
-           404 - Route non trouvée
-        ----------------------------------- */
-        JsonResponse::notFound();
+    if (str_ends_with($uri, '/test') && $method === 'GET') {
+        JsonResponse::success('Router ok !');
+        return;
     }
+
+    if (str_ends_with($uri, '/auth/login') && $method === 'POST') {
+        (new AuthController())->login();
+        return;
+    }
+
+    if (str_ends_with($uri, '/auth/me') && $method === 'GET') {
+        (new AuthController())->me();
+        return;
+    }
+
+    JsonResponse::notFound();
+}
+
 }

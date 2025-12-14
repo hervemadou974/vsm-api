@@ -6,9 +6,10 @@
         "psr-4": {
             "Controllers\\": "src/controllers/",
             "Services\\": "src/services/",
-            "Middlewares\\": "src/middlewares/",
+            "Models\\": "src/models/",
+            "Routes\\": "src/routes/",
             "Utils\\": "src/utils/",
-            "Models\\": "src/models/"
+            "Middlewares\\": "src/middlewares/"
         }
     },
     "authors": [
@@ -17,6 +18,5 @@
             "email": "j.hervemadou@gmail.com"
         }
     ],
-    "minimum-stability": "stable",
     "require": {}
 }

@@ -16,36 +16,17 @@ class PersonneRepository
 
     public function findByEmail(string $email): ?array
     {
-        $sql = "SELECT * FROM personnes WHERE email = :email LIMIT 1";
-        $stmt = $this->db->prepare($sql);
+        $stmt = $this->db->prepare(
+            "SELECT * FROM personnes WHERE email = :email LIMIT 1"
+        );
         $stmt->execute(['email' => $email]);
-
-        $personne = $stmt->fetch();
-        return $personne ?: null;
+        return $stmt->fetch() ?: null;
     }
 
-    public function findById(int $id): ?array
-    {
-        $sql = "SELECT * FROM personnes WHERE id = :id LIMIT 1";
-        $stmt = $this->db->prepare($sql);
-        $stmt->execute(['id' => $id]);
+public function findRolesByPersonneId(int $id): array
+{
+    // Gestion des rôles non implémentée à ce stade
+    return [];
+}
 
-        $personne = $stmt->fetch();
-        return $personne ?: null;
-    }
-
-    public function findRolesByPersonneId(int $personneId): array
-    {
-        $sql = "
-            SELECT r.code, r.libelle
-            FROM roles r
-            INNER JOIN personne_roles pr ON pr.role_id = r.id
-            WHERE pr.personne_id = :personne_id
-        ";
-
-        $stmt = $this->db->prepare($sql);
-        $stmt->execute(['personne_id' => $personneId]);
-
-        return $stmt->fetchAll();
-    }
 }

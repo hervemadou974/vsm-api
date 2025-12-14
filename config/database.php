@@ -2,7 +2,7 @@
 
 return [
     'host'     => 'localhost',
-    'dbname'   => 'vsmdata',
+    'dbname'   => 'vsm',
     'user'     => 'root',
     'password' => '',
     'charset'  => 'utf8mb4'
