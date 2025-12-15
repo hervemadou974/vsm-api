@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>VSM – Connexion</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="login-page">
+
+<div class="login-wrapper">
+
+    <div class="login-card">
+
+        <div class="login-header">
+            <h1 class="logo">VSM</h1>
+            <p class="subtitle">
+                Plateforme de suivi et de vigilance médicale
+            </p>
+        </div>
+
+        <form id="loginForm" novalidate>
+
+            <div class="form-group">
+                <label for="email">Adresse email</label>
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="prenom.nom@exemple.fr"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="password">Mot de passe</label>
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="••••••••"
+                    required
+                >
+            </div>
+
+            <button type="submit" class="btn-primary full-width">
+                Se connecter
+            </button>
+
+            <p id="error" class="error-msg"></p>
+
+        </form>
+
+        <div class="login-footer">
+            <small>
+                Accès réservé aux aidants autorisés
+            </small>
+        </div>
+
+    </div>
+
+</div>
+
+<script src="../js/app.js" defer></script>
+</body>
+</html>
