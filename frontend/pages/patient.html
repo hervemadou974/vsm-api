@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>VSM – Patients</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<div class="app-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <h2 class="logo">VSM</h2>
+        <nav>
+            <a href="dashboard.html">Dashboard</a>
+            <a class="active" href="patient.html">Patients</a>
+            <a href="patient-create.html">Ajouter patient</a>
+            <a href="#" id="logout">Déconnexion</a>
+        </nav>
+    </aside>
+
+    <!-- CONTENT -->
+    <main class="content">
+
+        <h1>Gestion des patients</h1>
+
+        <div class="grid">
+
+            <!-- LISTE PATIENTS -->
+            <section class="card">
+                <h3>Patients suivis</h3>
+
+                <ul class="list" id="patientsList">
+                    <li>Chargement…</li>
+                </ul>
+            </section>
+
+            <!-- FICHE PATIENT -->
+            <section class="card">
+                <h3>Fiche patient</h3>
+
+                <p><strong>Nom :</strong> <span id="patientNom">—</span></p>
+                <p><strong>Prénom :</strong> <span id="patientPrenom">—</span></p>
+                <p><strong>Date de naissance :</strong> <span id="patientNaissance">—</span></p>
+                <p><strong>Vulnérabilité :</strong> <span id="patientVulnerabilite">—</span></p>
+
+                <div style="margin-top:20px">
+                    <button class="action-btn">Créer une alerte</button>
+                </div>
+            </section>
+
+        </div>
+
+    </main>
+
+</div>
+
+<script src="../js/app.js"></script>
+</body>
+</html>
